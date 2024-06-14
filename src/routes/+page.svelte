@@ -21,7 +21,6 @@
         ).accessToken;
 
         if (token != "Bearer undefined") {
-            console.log(token);
             window.location.href = "/mainPage";
         }
     });
