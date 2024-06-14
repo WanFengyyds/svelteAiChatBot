@@ -92,7 +92,9 @@
         ).accessToken;
 
         if (localStorage.getItem("key") != "Bearer undefined") {
-            window.location.href = "/mainPage";
+            if (!(window.location.href == "/mainPage")) {
+                window.location.href = "/mainPage/aiChat";
+            }
         }
     }
 </script>

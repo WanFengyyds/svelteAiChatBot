@@ -116,7 +116,7 @@
                         <div class="messageFromUser">
                             <div></div>
                             <div class="message">
-                                <p class="chatBot">{messaggio.testo}</p>
+                                <p class="chat">{messaggio.testo}</p>
                             </div>
                         </div>
                     {/if}
@@ -255,8 +255,6 @@
     }
     .chat {
         font-size: 20px;
-    }
-    .chatBot {
-        font-size: 20px;
+        color: black;
     }
 </style>
