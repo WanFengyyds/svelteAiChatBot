@@ -1,6 +1,5 @@
 <script>
     import { Input } from "$lib/components/ui/input/index.js";
-    import ChatHistory from "../../customUiDevelop/chatHistory.svelte";
     import { ModeWatcher } from "mode-watcher";
     import { onMount } from "svelte";
     import { Messaggio } from "../../../lib/models/Messaggio.js";
@@ -98,42 +97,125 @@
 
 <ModeWatcher />
 <slot></slot>
-<div class="messages">
-    {#each arrayOfMessages as messaggio}
-        {#if messaggio.from == "bot"}
-            <div class="messageFromBot">
-                <div class="message">
-                    <p class="chat">{messaggio.testo}</p>
-                </div>
+<div class="all">
+    <div class="containerChat">
+        <div class="chatPart">
+            <div class="topBar">
+                <p class="chatTitle">AI Chat Helper</p>
             </div>
-        {:else}
-            <div class="messageFromUser">
-                <div></div>
-                <div class="message">
-                    <p class="chatBot">{messaggio.testo}</p>
-                </div>
+
+            <div class="messages">
+                {#each arrayOfMessages as messaggio}
+                    {#if messaggio.from == "bot"}
+                        <div class="messageFromBot">
+                            <div class="message">
+                                <p class="chat">{messaggio.testo}</p>
+                            </div>
+                        </div>
+                    {:else}
+                        <div class="messageFromUser">
+                            <div></div>
+                            <div class="message">
+                                <p class="chatBot">{messaggio.testo}</p>
+                            </div>
+                        </div>
+                    {/if}
+                {/each}
             </div>
-        {/if}
-    {/each}
-</div>
-<div class="input">
-    <Input
-        type="email"
-        placeholder="Type ur question"
-        class="inputChat"
-        on:keypress={handleEnterPress}
-        bind:value={chat}
-    />
+            <div class="input">
+                <Input
+                    type="email"
+                    placeholder="Type ur question"
+                    class="inputChat"
+                    on:keypress={handleEnterPress}
+                    bind:value={chat}
+                />
+            </div>
+        </div>
+        <div class="chatHistory">
+            <div class="history-box">
+                <p class="chatTitle">History</p>
+            </div>
+            <div class="all-history-container"></div>
+        </div>
+    </div>
 </div>
 
 <style>
+    .all {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+    .containerChat {
+        display: flex;
+        flex-direction: row;
+        height: 95%;
+        width: 95%;
+        border-radius: 20px;
+        background-color: white;
+    }
+    .chatPart {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        flex: 0.85;
+    }
+    .chatHistory {
+        display: flex;
+        height: 100%;
+        flex: 0.15;
+        flex-direction: column;
+    }
+    .history-box {
+        display: flex;
+        padding: 5px;
+        height: 50px;
+        border-left: 2px solid lightgray;
+        border-bottom: 2px solid lightgray;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 100%;
+    }
+
+    .all-history-container {
+        display: flex;
+        width: 100%;
+        height: 95%;
+        border-left: 2px solid lightgray;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .topBar {
+        display: flex;
+        flex-direction: row;
+        height: 50px;
+        width: 100%;
+        align-items: center;
+        border-radius: 20px 20px 0 0;
+        background-color: white;
+        padding: 10px;
+        border-bottom: 2px solid lightgray;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding-left: 20px;
+    }
+
+    .chatTitle {
+        font-family: "Outfit", sans-serif;
+        font-optical-sizing: auto;
+        font-style: normal;
+        font-size: 25px;
+        color: black;
+    }
+
     .messages {
         display: flex;
         flex-direction: column;
         height: 100%;
         width: 100%;
         gap: 40px;
-        overflow-y: scroll;
+        /*overflow-y: scroll;*/
     }
     .input {
         width: 100%;
@@ -142,6 +224,7 @@
         justify-content: center;
         padding-left: 10%;
         padding-right: 10%;
+        padding-bottom: 30px;
     }
 
     .messageFromBot {

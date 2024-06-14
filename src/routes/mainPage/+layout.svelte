@@ -1,5 +1,5 @@
 <script>
-    import ChatHistory from "../customUiDevelop/chatHistory.svelte";
+    import Options from "../customUiDevelop/options.svelte";
 </script>
 
 <div class="page">
@@ -7,7 +7,7 @@
         Left part of the page with title ecc.
     -->
     <div class="options">
-        <ChatHistory></ChatHistory>
+        <Options></Options>
     </div>
     <div class="actualChat">
         <slot></slot>
@@ -37,7 +37,6 @@
         flex-direction: column;
         justify-content: center;
         height: 100vh;
-        padding-bottom: 50px;
         background-color: rgb(32, 31, 31);
     }
 </style>
